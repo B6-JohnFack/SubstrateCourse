@@ -1,6 +1,7 @@
 //
 //@author 001-Bayek-烟台 Team1 第七期
-//@dev 使用Rust std标准库的功能实现一个tcp server
+//@title 使用Rust std标准库的功能实现一个tcp server
+//@dev 程序通过 `cargo run` 编译并启动，客户端（MacOS）进行测试，测试指令 `telnet localhost 1105`，输入UTF-8字符来返回响应字符测试通过
 //
 
 // 引用类库 io、net 用来完成TCP监听读取，
@@ -13,7 +14,7 @@ use std::str;
 use std::time;
 
 fn main() { 
-    // 创建一个Tcp监听，使其监听bind函数中的ip:port，代码执行后（MacOS）可以通过 lsof -i:8866 进行验证端口启动
+    // 创建一个Tcp监听，使其监听bind函数中的ip:port，代码执行后（MacOS）可以通过 lsof -i:1105 进行验证端口启动
     let listener = TcpListener::bind("127.0.0.1:1105").unwrap();
     // 调用 incoming() 方法接收客户端的链接信息，如果有新的信息进来就会返回一个Result枚举，OK(T:TcpStream)
     for stream in listener.incoming() {
