@@ -117,6 +117,21 @@ pub mod pallet {
             Ok(().into())
             // 返回一个 result 类型，并且进行转换
         }
+        
+        // 转移存证的功能实现
+        #[pallet::weight(0)]
+        pub fn transfer_claim(origin: OriginFor<T>, claim: Vec<u8>, receiver: T::AccountId) -> DispatchResultWithPostInfo {
+            
+            let sender = ensure_signed(origin)?;
+            // 校验当前的交易发送方是一个已经签名的交易
+
+            let (owner, _) = Proofs::<T>::get(&claim).ok_or(Error::<T>::ClaimNotExist)?;
+            // 校验当前的存储里面存在这样一个值
+            
+            // 后面的核心内容不是很明白，不太会编写
+
+            Ok(().into())
+        }
     }
     
 }
